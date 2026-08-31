@@ -1,97 +1,116 @@
 # zzspectra
 
-[![Deploy to GitHub Pages](https://github.com/zzdree/zzspectra/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/zzdree/zzspectra/actions/workflows/deploy-pages.yml)
-[![Built with Vite](https://img.shields.io/badge/built%20with-Vite-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
-[![Vanilla JavaScript](https://img.shields.io/badge/JavaScript-Vanilla-F7DF1E?logo=javascript&logoColor=111111)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![License](https://img.shields.io/badge/license-private-lightgrey)](https://github.com/zzdree/zzspectra)
+<p align="center">
+  <strong>Shape the light. Rehearse the moment.</strong><br>
+  A browser-based lighting simulator and show-control workspace.
+</p>
 
-> **A focused browser workspace for designing and rehearsing lighting looks.**
+<p align="center">
+  <a href="https://zzdree.github.io/zzspectra/"><img src="https://img.shields.io/badge/▶_Open_live_demo-zzdree.github.io-F2B84B?style=for-the-badge&labelColor=17191D" alt="Open live demo"></a>
+  <a href="https://github.com/zzdree/zzspectra/actions/workflows/deploy-pages.yml"><img src="https://img.shields.io/github/actions/workflow/status/zzdree/zzspectra/deploy-pages.yml?branch=main&style=for-the-badge&label=deploy" alt="Deployment status"></a>
+</p>
 
-**Live preview:** [zzspectra on GitHub Pages](https://zzdree.github.io/zzspectra/)
+<p align="center">
+  <img src="https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white" alt="Vite 8">
+  <img src="https://img.shields.io/badge/JavaScript-Vanilla-F7DF1E?logo=javascript&logoColor=111111" alt="Vanilla JavaScript">
+  <img src="https://img.shields.io/badge/UI-dark--only-17191D?logo=windowsterminal&logoColor=F2B84B" alt="Dark only UI">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-2EA44F" alt="Apache 2.0 license"></a>
+</p>
 
-zzspectra is an experimental web-based lighting simulator and show-control workspace. It is designed for quickly shaping lighting looks, rehearsing cue ideas, and exploring a responsive console-inspired workflow directly in the browser.
+---
 
-It takes inspiration from professional lighting workstations without copying proprietary trademarks, icons, or interface layouts.
+## The idea
 
-## What is inside
+Lighting work is spatial, visual, and fast. **zzspectra** keeps that loop close:
 
-- Interactive stage viewport with fixture beams and color feedback
-- Fixture browser with searchable fixtures and quick selection
-- Inspector controls for dimmer and color
-- Cue stack and transport controls for rehearsal
-- Blackout control for immediate output safety
-- Dark-only, high-contrast interface
-- Responsive layout for desktop and mobile screens
-- Static deployment with no backend or API key required
+> **Select a fixture → shape the look → capture the cue → rehearse the playback.**
 
-> The current repository is an actively evolving MVP. More fixture types, true 3D controls, look capture, persistence, and undo/redo are planned in the roadmap.
+This is an evolving MVP for exploring lighting looks in the browser—without a backend, account, or API key. The visual language is inspired by professional lighting workstations while remaining an original interface, not a reproduction of any proprietary console.
 
-## Run locally
+## MVP at a glance
 
-Requirements: Node.js 20+ and npm.
+| Area | What works today |
+| --- | --- |
+| **Stage** | Interactive stage canvas with fixture positions, beams, and color feedback |
+| **Fixtures** | Searchable fixture list with quick selection and status indicators |
+| **Inspector** | Dimmer and color controls for the selected fixture |
+| **Show control** | Cue stack, playback transport, and blackout safety control |
+| **Workspace** | Dark-only, high-contrast responsive layout for desktop and mobile |
+| **Delivery** | Automated Vite build and GitHub Pages deployment on every `main` push |
+
+## A quick tour
+
+```text
+┌──────────────────┬────────────────────────────────┬──────────────────┐
+│  FIXTURE LIBRARY │        STAGE / LIGHT VIEW      │    INSPECTOR     │
+│  Search + patch  │   fixtures · beams · playback  │  dimmer · color  │
+├──────────────────┴────────────────────────────────┴──────────────────┤
+│                         CUE STACK + TRANSPORT                         │
+└───────────────────────────────────────────────────────────────────────┘
+```
+
+The desktop layout becomes a focused, touch-friendly control surface on narrow screens. No horizontal scrolling should be necessary for the core flow.
+
+## Try it locally
+
+**Requirements:** Node.js 20+ and npm.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite, usually `http://localhost:5173`.
+Then open the local URL printed by Vite, usually `http://localhost:5173`.
 
-To create a production build locally:
+For a production-like local preview:
 
 ```bash
 npm run build
 npm run preview
 ```
 
-## Deploy to GitHub Pages
+## Live deployment
 
-The repository includes a GitHub Actions workflow at [deploy-pages.yml](.github/workflows/deploy-pages.yml). Every push to `main` builds the Vite app and publishes the `dist` directory to GitHub Pages.
+The app is deployed at **[zzdree.github.io/zzspectra](https://zzdree.github.io/zzspectra/)**.
 
-To enable it manually in GitHub:
+The workflow in [`deploy-pages.yml`](.github/workflows/deploy-pages.yml) runs on pushes to `main` and can also be started manually from the **Actions** tab. Vite is configured with the project base path in [`vite.config.js`](vite.config.js), so assets resolve correctly under GitHub Pages.
 
-1. Open **Settings → Pages**.
-2. Set **Source** to **GitHub Actions**.
-3. Push to `main` or run the **Deploy to GitHub Pages** workflow manually.
+## Product direction
 
-The expected public URL is:
+The first release is intentionally focused: a small, legible stage and a direct operator loop. The next layer adds richer simulation fidelity without sacrificing speed or clarity.
+
+- **Now:** responsive workspace shell, fixture selection, dimmer/color, cues, playback, blackout
+- **Next:** real WebGL stage, pan/tilt/zoom/strobe/beam controls, fixture types
+- **Then:** named look capture, local persistence, undo/redo, JSON import/export, fixture groups
+
+Track the full implementation sequence in [`PLAN.md`](PLAN.md), and read the product contract in [`PRD.md`](PRD.md) plus the visual contract in [`DESIGN.md`](DESIGN.md).
+
+## Repository map
 
 ```text
-https://zzdree.github.io/zzspectra/
+zzspectra/
+├── index.html                    # HTML shell + SEO metadata
+├── src/
+│   ├── main.js                   # MVP state, rendering, and interactions
+│   └── style.css                 # Dark-only design system + responsive rules
+├── .github/workflows/
+│   └── deploy-pages.yml          # Build and deploy automation
+├── PLAN.md                       # Roadmap and implementation checklist
+├── PRD.md                        # Product requirements
+├── DESIGN.md                     # Design direction and UI contract
+├── vite.config.js                # GitHub Pages base path
+└── LICENSE                       # Apache License 2.0
 ```
 
 ## Project documents
 
-- [BIG-PLAN.md](BIG-PLAN.md) — phased roadmap, milestones, risks, and success criteria
-- [PRD.md](PRD.md) — product requirements, epics, user stories, and acceptance criteria
-- [DESIGN.md](DESIGN.md) — visual direction, responsive rules, and interaction contract
+- [`PLAN.md`](PLAN.md) — milestones, critical path, checklist, and demo definition
+- [`PRD.md`](PRD.md) — epics, user stories, acceptance criteria, and non-goals
+- [`DESIGN.md`](DESIGN.md) — visual system, responsive gates, motion, and accessibility direction
 
-## Project structure
+> [!NOTE]
+> zzspectra is an experimental project. The current simulator is an early MVP and the roadmap is actively evolving.
 
-```text
-zzspectra/
-├── index.html
-├── src/
-│   ├── main.js
-│   └── style.css
-├── .github/workflows/
-├── BIG-PLAN.md
-├── PRD.md
-└── DESIGN.md
-```
-
-## Roadmap
-
-- [x] Initial responsive lighting workspace shell
-- [x] Fixture selection, dimmer, color, cue stack, playback, and blackout foundation
-- [x] Automated GitHub Pages deployment
-- [ ] Real 3D/WebGL viewport
-- [ ] Pan, tilt, zoom, strobe, beam, and fixture-type controls
-- [ ] Capture/recall looks and local project persistence
-- [ ] Undo/redo and JSON import/export
-- [ ] Fixture groups and multi-select
-- [ ] Mobile-first visual QA pass
-
-## License
-
-All rights reserved. This repository is private and is not currently distributed under an open-source license.
+<p align="center">
+  <sub>Built for curious lighting operators, designers, and developers.</sub>
+</p>

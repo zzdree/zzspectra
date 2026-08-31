@@ -1,4 +1,4 @@
-# BIG PLAN — zzspectra
+# PLAN — zzspectra
 
 **Status:** Draft v1.0  
 **Tanggal:** 2026-09-01  
